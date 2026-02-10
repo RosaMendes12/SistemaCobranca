@@ -47,7 +47,8 @@ SQL
 - Verifique o arquivo src/main/resources/application.properties e ajuste seu usuário/senha do MySQL.
 - Execute o projeto via sua IDE (IntelliJ/VS Code) ou pelo terminal:
 ```
-Bash 
+Bash
+
 ./mvnw spring-boot:run
 
 ```
@@ -59,7 +60,8 @@ O servidor estará disponível em: http://localhost:8080
 - Navegue até a pasta Desafio ImovelPay Frontend.
 - Instale as dependências e inicie:
 ```
-Bash 
+Bash
+
 npm install 
 npm run dev
 
