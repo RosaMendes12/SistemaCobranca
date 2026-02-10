@@ -78,7 +78,7 @@ O frontend estará disponível em: http://localhost:5173
 - Busca em Tempo Real: Filtro de clientes por nome utilizando busca otimizada (startsWith).
 
 - Gestão de Status: Interface intuitiva que permite dar baixa em cobranças com apenas um clique.
-- 
+  
 - Validação de Dados (Frontend e Backend): Garante a integridade dos dados impedindo cadastros com valores zerados ou nomes vazios, exibindo alertas amigáveis ao usuário.
 
 ## 📂 Estrutura de Endpoints (API)
