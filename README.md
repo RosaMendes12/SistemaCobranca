@@ -26,7 +26,7 @@
 
 ### 1. Pré-requisitos
 
-- Node.js instalado.
+- Node.js versão 24.13.0 instalado.
 - Java JDK 21.
 - MySQL Server rodando.
 
@@ -46,6 +46,7 @@ SQL
 - Navegue até a pasta API Backend.
 - Verifique o arquivo src/main/resources/application.properties e ajuste seu usuário/senha do MySQL.
 - Execute o projeto via sua IDE (IntelliJ/VS Code) ou pelo terminal:
+
 ```
 Bash
 
@@ -59,10 +60,11 @@ O servidor estará disponível em: http://localhost:8080
 
 - Navegue até a pasta APP Frontend.
 - Instale as dependências e inicie:
+
 ```
 Bash
 
-npm install 
+npm install
 npm run dev
 
 ```
@@ -78,8 +80,9 @@ O frontend estará disponível em: http://localhost:5173
 - Busca em Tempo Real: Filtro de clientes por nome utilizando busca otimizada (startsWith).
 
 - Gestão de Status: Interface intuitiva que permite dar baixa em cobranças com apenas um clique.
-  
 - Validação de Dados (Frontend e Backend): Garante a integridade dos dados impedindo cadastros com valores zerados ou nomes vazios, exibindo alertas amigáveis ao usuário.
+
+- Interface e Layout (CSS Grid): Para a exibição das cobranças, utilizei o CSS Grid Layout. Essa escolha foi feita para garantir que o sistema seja totalmente responsivo e organizado.
 
 ## 📂 Estrutura de Endpoints (API)
 
