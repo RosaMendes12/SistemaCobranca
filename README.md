@@ -39,7 +39,7 @@ No MySQL, crie o banco de dados:
 
 ### 3. Executando o Backend
 
-- Navegue até a pasta Desafio ImovelPay Backend.
+- Navegue até a pasta API Backend.
 - Verifique o arquivo src/main/resources/application.properties e ajuste seu usuário/senha do MySQL.
 - Execute o projeto via sua IDE (IntelliJ/VS Code) ou pelo terminal:
 
