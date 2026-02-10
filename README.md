@@ -35,7 +35,8 @@
 No MySQL, crie o banco de dados:
 
 ```SQL 
- CREATE DATABASE cobranca_db;```
+ CREATE DATABASE cobranca_db;
+```
 
 ### 3. Executando o Backend
 
