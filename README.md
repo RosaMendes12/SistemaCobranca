@@ -34,7 +34,8 @@
 
 No MySQL, crie o banco de dados:
 
-```SQL 
+```
+SQL 
  CREATE DATABASE cobranca_db;
 ```
 
