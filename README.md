@@ -57,7 +57,7 @@ O servidor estará disponível em: http://localhost:8080
 
 ### 4. Executando o Frontend
 
-- Navegue até a pasta Desafio ImovelPay Frontend.
+- Navegue até a pasta Desafio APP Frontend.
 - Instale as dependências e inicie:
 ```
 Bash
