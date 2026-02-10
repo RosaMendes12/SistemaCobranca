@@ -57,7 +57,7 @@ O servidor estará disponível em: http://localhost:8080
 
 ### 4. Executando o Frontend
 
-- Navegue até a pasta Desafio APP Frontend.
+- Navegue até a pasta APP Frontend.
 - Instale as dependências e inicie:
 ```
 Bash
