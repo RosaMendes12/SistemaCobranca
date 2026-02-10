@@ -1,0 +1,143 @@
+/*  Reset para limpar estilos do navegador e centralizar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Configurações básicas do corpo da página */
+body {
+  background-color: #f0f2f5; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center; 
+  min-height: 100vh;
+}
+
+/*  Container Principal */
+.container-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px; 
+  padding: 40px 20px;
+}
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/*  Card do Formulário (Onde você clica em Nova Cobrança) */
+.card-input {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #4a90e2;
+}
+
+/*  Lista de Cobranças */
+.lista-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Cria o espaço entre os cards */
+}
+
+/*  Cada Item da Cobrança (Card Branco) */
+.item-cobranca {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06); 
+  position: relative;
+  transition: transform 0.2s;
+  text-align: left;
+}
+
+.item-cobranca:hover {
+  transform: translateY(-3px); /* Efeito de flutuar ao passar o mouse */
+}
+
+/*  Bordas Laterais Coloridas (Destaque de Status) */
+.status-pago {
+  border-left: 10px solid #2ecc71; /* Verde para PAGO */
+}
+
+.status-pendente {
+  border-left: 10px solid #e74c3c; /* Vermelho para PENDENTE */
+}
+
+/* Botões Estilizados */
+.btn-nova {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-salvar {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-cancelar {
+  background: #95a5a6;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-pago-acao {
+  background: #f39c12; /* Laranja de atenção */
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.botoes-form {
+  display: flex;
+  gap: 10px;
+}
