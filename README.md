@@ -10,7 +10,6 @@
 
 - HTML5 & CSS3: Estrutura de dados e estilização visual do sistema.
 
-- Hooks (useState, useEffect, useRef): Utilizados para gerenciar o estado das cobranças, carregar dados da API e controlar o foco dos campos de entrada automaticamente.
 
 ### Backend
 
