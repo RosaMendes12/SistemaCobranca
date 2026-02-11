@@ -8,7 +8,7 @@ function App() {
   const [cobranca, setCobranca] = useState([]);
   const [pesquisa, setPesquisa] = useState("");
 
-  // ----> NOVOS ESTADOS PARA PAGINAÇÃO <---- //
+  // ---->  Estados para paginação <---- //
   const [paginaAtual, setPaginaAtual] = useState(0);
   const [totalPaginas, setTotalPaginas] = useState(0);
 
@@ -27,7 +27,7 @@ function App() {
   useEffect(() => {
     async function buscarCobrancas() {
       try {
-        // Agora enviamos o parâmetro ?page para o Spring Boot
+        // Enviando o parâmetro ( ?page )  para o Spring Boot
         const resposta = await api.get(
           `/cobranca?page=${paginaAtual}&nome=${pesquisa}`
         );
@@ -36,9 +36,7 @@ function App() {
         setCobranca(resposta.data.content);
         setTotalPaginas(resposta.data.totalPages);
 
-        // === ADICIONE ESTA LINHA ABAIXO ===
         window.scrollTo({ top: 0, behavior: "smooth" });
-        // =================================
       } catch (erro) {
         console.error(" Erro ao buscar:", erro);
       }
@@ -51,7 +49,7 @@ function App() {
   const [dataVencimentoInput, setVencimentoInput] = useState("");
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
-  // ---  Criar as referências ---
+  // --->  Criar as referências <--- //
   const valorRef = useRef(null);
   const dataRef = useRef(null);
   const botaoRef = useRef(null);
@@ -76,7 +74,7 @@ function App() {
       alert("O valor é obrigatório.");
       return;
     }
-    // Remove a formatação e converte para número limpo para enviar ao backend
+    // Remove a formatação e converte para número limpo para enviar ao backend.
     const valorLimpo = parseFloat(
       valorInput.replace("R$", "").replace(/\./g, "").replace(",", ".").trim()
     );
@@ -137,8 +135,7 @@ function App() {
     }
   };
 
-  // Como o Java (Backend) agora já filtra no banco de dados e nos envia a lista pronta,
-  // o React não precisa mais de lógica de filtro. Ele apenas recebe e exibe.
+  // O Java filtra no banco de dados e envia a lista pronta para o React, e aqui se exibe o que veio do backend sem precisar filtrar nada.
   const clientesFiltrados = cobranca;
 
   return (
@@ -161,7 +158,7 @@ function App() {
               placeholder="Nome do Cliente"
               value={nomeClienteInput}
               onChange={(e) => setNomeInput(e.target.value)}
-              // --- ADIÇÃO 3: Quando apertar Enter aqui, vai para o Valor ---
+              // --- Quando apertar Enter aqui, vai para o Valor --- //
               onKeyDown={(e) => pularFoco(e, valorRef)}
             />
 
@@ -180,7 +177,7 @@ function App() {
               type="date"
               value={dataVencimentoInput}
               onChange={(e) => setVencimentoInput(e.target.value)}
-              // --- Ao apertar Enter aqui, foca no botão de Salvar ---
+              // --- Ao apertar ENTER aqui, foca no botão de Salvar ---
               onKeyDown={(e) => pularFoco(e, botaoRef)}
             />
             <button ref={botaoRef} onClick={criarCobranca}>
@@ -239,7 +236,7 @@ function App() {
         ))}
       </div>
 
-      {/* 2. COLOQUE O CÓDIGO DA PAGINAÇÃO EXATAMENTE AQUI: */}
+      {/* PAGINAÇÃO */}
       <div className="paginacao-controles">
         <button
           disabled={paginaAtual === 0}

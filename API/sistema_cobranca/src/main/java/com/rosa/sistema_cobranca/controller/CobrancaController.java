@@ -30,12 +30,6 @@ public class CobrancaController {
         return repository.findByNomeClienteContainingIgnoreCase(nome, pageable);
     }
 
-    // @PageableDefault define que, se o front não avisar, ele traz 6 itens por
-    // página
-    /*public Page<Cobranca> listar(@PageableDefault(size = 10, sort = "nomeCliente", direction = Sort.Direction.ASC) Pageable pageable) {
-        return repository.findAll(pageable);
-    }*/
-
     // Método para buscar os detalhes de uma única cobrança usando o ID
     @GetMapping("/{id}")
     public Cobranca buscarPorId(@PathVariable Long id) {

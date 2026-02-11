@@ -18,7 +18,7 @@
 
 - Spring Boot 3: Framework para criação da API REST.
 
-- Spring Data JPA: Abstração da camada de banco de dados.
+- Spring Data JPA: Abstração da camada de banco de dados, incluindo suporte a Pagination & Sorting.
 
 - MySQL: Armazenamento persistente dos dados de cobrança.
 
@@ -79,6 +79,8 @@ O frontend estará disponível em: http://localhost:5173
 
 - Busca em Tempo Real: Filtro de clientes por nome utilizando busca otimizada (startsWith).
 
+- Paginação de Resultados: Listagem otimizada que carrega os dados em partes, garantindo rapidez mesmo com grandes volumes de registros.
+
 - Gestão de Status: Interface intuitiva que permite dar baixa em cobranças com apenas um clique.
 - Validação de Dados (Frontend e Backend): Garante a integridade dos dados impedindo cadastros com valores zerados ou nomes vazios, exibindo alertas amigáveis ao usuário.
 
@@ -86,12 +88,12 @@ O frontend estará disponível em: http://localhost:5173
 
 ## 📂 Estrutura de Endpoints (API)
 
-| Método   | Endpoint                | Descrição                                     |
-| :------- | :---------------------- | :-------------------------------------------- |
-| **GET**  | `/cobranca`             | Lista todas as cobranças                      |
-| **POST** | `/cobranca`             | Cria uma nova cobrança (Inicia como PENDENTE) |
-| **PUT**  | `/cobranca/{id}`        | Atualiza todos os dados de uma cobrança       |
-| **PUT**  | `/cobranca/{id}/pagar/` | Altera o status para PAGO                     |
+| Método   | Endpoint                  | Descrição                                     |
+| :------- | :------------------------ | :-------------------------------------------- |
+| **GET**  | `/cobranca?page=0&size=5` | Lista cobranças com paginação                 |
+| **POST** | `/cobranca`               | Cria uma nova cobrança (Inicia como PENDENTE) |
+| **PUT**  | `/cobranca/{id}`          | Atualiza todos os dados de uma cobrança       |
+| **PUT**  | `/cobranca/{id}/pagar/`   | Altera o status para PAGO                     |
 
 ## 👩‍💻 Desenvolvido por:
 
