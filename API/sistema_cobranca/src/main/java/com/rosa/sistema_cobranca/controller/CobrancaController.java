@@ -4,13 +4,16 @@ import com.rosa.sistema_cobranca.entity.Cobranca;
 import com.rosa.sistema_cobranca.entity.Status;
 import com.rosa.sistema_cobranca.repository.CobrancaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/cobranca")
-//O Cross remove o bloqueio de segurança do navegador p/ permitir a comunicação entre Front e Backend.
+// O Cross remove o bloqueio de segurança do navegador p/ permitir a comunicação
+// entre Front e Backend.
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CobrancaController {
 
@@ -20,9 +23,18 @@ public class CobrancaController {
 
     // Método para buscar todas as cobranças cadastradas no banco de dados
     @GetMapping
-    public List<Cobranca> listar() {
-        return repository.findAll();
+    public Page<Cobranca> listar(
+            @RequestParam(required = false, defaultValue = "") String nome,
+            @PageableDefault(size = 10, sort = "nomeCliente", direction = Sort.Direction.ASC) Pageable pageable
+    ) {
+        return repository.findByNomeClienteContainingIgnoreCase(nome, pageable);
     }
+
+    // @PageableDefault define que, se o front não avisar, ele traz 6 itens por
+    // página
+    /*public Page<Cobranca> listar(@PageableDefault(size = 10, sort = "nomeCliente", direction = Sort.Direction.ASC) Pageable pageable) {
+        return repository.findAll(pageable);
+    }*/
 
     // Método para buscar os detalhes de uma única cobrança usando o ID
     @GetMapping("/{id}")
@@ -60,9 +72,11 @@ public class CobrancaController {
         // Primeiro busco a cobrança no banco pelo ID para ter certeza que ela existe.
         // Se não existir, me retorna erro.
         Cobranca cobranca = repository.findById(id).orElseThrow();
-        // Altera apenas o campo de status. O restante nome, valor e data continua igual.
+        // Altera apenas o campo de status. O restante nome, valor e data continua
+        // igual.
         cobranca.setStatus(Status.PAGO);
-        // Salva a alteração no banco e retorna a cobrança já atualizada para o Frontend.
+        // Salva a alteração no banco e retorna a cobrança já atualizada para o
+        // Frontend.
         return repository.save(cobranca);
     }
 }

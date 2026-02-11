@@ -4,6 +4,14 @@ import "./App.css";
 import axios from "axios";
 
 function App() {
+  //---> ESTADOS (useState): O que o componente armazena <---//
+  const [cobranca, setCobranca] = useState([]);
+  const [pesquisa, setPesquisa] = useState("");
+
+  // ----> NOVOS ESTADOS PARA PAGINAÇÃO <---- //
+  const [paginaAtual, setPaginaAtual] = useState(0);
+  const [totalPaginas, setTotalPaginas] = useState(0);
+
   //----> Função para criar a máscara de dinheiro e bloquear letras <----//
   const formatarMoeda = (valor) => {
     let v = valor.replace(/\D/g, ""); // Remove tudo que não é número (Bloqueia letras)
@@ -15,21 +23,28 @@ function App() {
     return v;
   };
 
-  const [cobranca, setCobranca] = useState([]); // Armazena a lista de cobranças retornadas do backend
-  const [pesquisa, setPesquisa] = useState(""); // Guarda o texto digitado para filtrar as cobranças
-
-  //---> Função para buscar os dados do Backend <---//
+  //---> Função para buscar os dados do Backend com Paginação <---//
   useEffect(() => {
     async function buscarCobrancas() {
       try {
-        const resposta = await api.get("/cobranca"); // Chama o endpoint do backend
-        setCobranca(resposta.data); // Coloca o que veio do banco na sua tela
+        // Agora enviamos o parâmetro ?page para o Spring Boot
+        const resposta = await api.get(
+          `/cobranca?page=${paginaAtual}&nome=${pesquisa}`
+        );
+
+        // No Spring Boot, os dados vêm dentro de .content quando usamos Page
+        setCobranca(resposta.data.content);
+        setTotalPaginas(resposta.data.totalPages);
+
+        // === ADICIONE ESTA LINHA ABAIXO ===
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        // =================================
       } catch (erro) {
         console.error(" Erro ao buscar:", erro);
       }
     }
     buscarCobrancas();
-  }, []);
+  }, [paginaAtual, pesquisa]); // Recarrega sempre que mudar de página
 
   const [nomeClienteInput, setNomeInput] = useState("");
   const [valorInput, setValorInput] = useState("");
@@ -122,16 +137,9 @@ function App() {
     }
   };
 
-  // Filtrar clientes
-  const clientesFiltrados = cobranca
-    .filter((item) => {
-      const nome = (item.nomeCliente || "").trim().toLowerCase(); // O trim() remove espaços extras, e o toLowerCase() deixa tudo minúsculo para comparação
-      const busca = pesquisa.trim().toLowerCase();
-      return nome.startsWith(busca); //startsWith é mais rápido que includes,serve p/ buscar o cliente desde a primeira letra do início do nome
-    })
-
-    .sort((a, b) => (a.nomeCliente || "").localeCompare(b.nomeCliente || ""));
-  // ------------------------------
+  // Como o Java (Backend) agora já filtra no banco de dados e nos envia a lista pronta,
+  // o React não precisa mais de lógica de filtro. Ele apenas recebe e exibe.
+  const clientesFiltrados = cobranca;
 
   return (
     <>
@@ -229,6 +237,27 @@ function App() {
             )}
           </div>
         ))}
+      </div>
+
+      {/* 2. COLOQUE O CÓDIGO DA PAGINAÇÃO EXATAMENTE AQUI: */}
+      <div className="paginacao-controles">
+        <button
+          disabled={paginaAtual === 0}
+          onClick={() => setPaginaAtual(paginaAtual - 1)}
+        >
+          ⬅️ Anterior
+        </button>
+
+        <span>
+          Página {paginaAtual + 1} de {totalPaginas || 1}
+        </span>
+
+        <button
+          disabled={paginaAtual + 1 >= totalPaginas}
+          onClick={() => setPaginaAtual(paginaAtual + 1)}
+        >
+          Próxima ➡️
+        </button>
       </div>
 
       <p className="read-the-docs">
